@@ -1,7 +1,7 @@
 package com.ltech.caixa_tesouraria.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,7 +23,7 @@ public class Lancamentos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime dataLancamento;
+    private LocalDate dataLancamento;
 
     @Column(length = 255)
     private String descricao;

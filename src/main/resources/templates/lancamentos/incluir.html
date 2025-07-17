@@ -27,8 +27,8 @@
                     </div>
 
                     <div class="mb-3 col-md-4 form-group">
-                        <label for="dataLancamento">Data do Pagamento: </label>
-                        <input type="text" th:field="*{dataLancamento}" id="dataLancamento" class="form-control"
+                        <label for="dataLancamento">Data do Lançamento: </label>
+                        <input type="text" th:field="*{dataLancamento}" id="dataLancamento" class="form-control datePicker"
                             data-mask="00/00/0000" />
                     </div>
 
@@ -46,6 +46,17 @@
                             <option value=""></option>
                             <option th:each="tipoMovimentacao : ${listaTipoMovimentacao}"
                                 th:value="${tipoMovimentacao.id}" th:text="${tipoMovimentacao.descricao}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 form-group">
+                        <label for="fundoFinanceiro">Fundo Financeiro</label>
+                        <select class="form-control select2" id="fundoFinanceiro" th:field="*{fundoFinanceiro}"
+                            th:if="${!somenteLeitura}">
+                            <option value=""></option>
+                            <option th:each="fundoFinanceiro : ${listaFundoFinanceiro}"
+                                th:value="${fundoFinanceiro.id}" th:text="${fundoFinanceiro.descricao}">
                             </option>
                         </select>
                     </div>
