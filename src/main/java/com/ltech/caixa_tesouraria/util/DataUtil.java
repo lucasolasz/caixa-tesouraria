@@ -2,6 +2,7 @@ package com.ltech.caixa_tesouraria.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class DataUtil {
 
@@ -13,7 +14,7 @@ public class DataUtil {
      * @param data LocalDate a ser formatado
      * @return String representando a data formatada
      */
-    public static String formatarData(LocalDate data) {
+    public static String formatarLocalDateParaString(LocalDate data) {
         if (data == null) {
             throw new IllegalArgumentException("A data não pode ser nula!");
         }
@@ -38,6 +39,15 @@ public class DataUtil {
      */
     public static int getMesAtual() {
         return LocalDate.now().getMonthValue();
+    }
+
+    public static LocalDate converterParaLocalDate(String dataString) {
+        try {
+            return LocalDate.parse(dataString, FORMATTER);
+        } catch (DateTimeParseException e) {
+            System.err.println("Erro ao converter a data: " + dataString);
+            throw e;
+        }
     }
 
 }
