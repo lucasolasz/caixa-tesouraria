@@ -162,11 +162,10 @@ public abstract class CrudController<T, ID, S extends ServiceCrud<T, ID, ?>> {
     public String gravar(@Valid @ModelAttribute("objeto") T entity, BindingResult result, Model model) {
         this.carregarAtributosTela(model);
         this.cargaAuxiliarObjetos(model);
+        service.ajusteAntesGravacao(entity);
         if (!validarAntesDeGravar(entity, result, model)) {
             return this.getViewPathOperacaoInclusao();
         }
-
-        service.ajusteAntesGravacao(entity);
         service.gravar(entity);
         return this.getRedirectPathOrigem();
     }
