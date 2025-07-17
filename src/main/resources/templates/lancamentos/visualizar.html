@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{index}"
+>
+  <main layout:fragment="content">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="tituloIndex">
+          Lançamentos
+          <div style="float: right">
+            <a th:href="@{/lancamentos/incluir}" class="btn btn-primary"
+              ><i class="fas fa-plus"></i> Novo Lançamento</a
+            >
+          </div>
+        </h5>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            id="studentTable"
+            class="table table-bordered"
+            style="width: 100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</html>

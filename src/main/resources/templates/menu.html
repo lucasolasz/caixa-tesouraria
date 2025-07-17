@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- Page Wrapper -->
+  <div id="wrapper" th:fragment="menu">
+    <!-- Sidebar -->
+    <ul
+      class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      id="accordionSidebar"
+    >
+      <!-- Sidebar - Brand -->
+      <a
+        class="sidebar-brand d-flex align-items-center justify-content-center"
+        th:href="@{/}"
+      >
+        <div class="sidebar-brand-icon rotate-n-15">
+          <img th:src="@{/img/favicon.ico}" alt="Logo" height="30" width="30" />
+        </div>
+        <div
+          class="sidebar-brand-text mx-3"
+          th:text="${@environment.getProperty('spring.application.name')}"
+        ></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0" />
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/}">
+          <i class="fas fa-home"></i>
+          <span>Home</span></a
+        >
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Heading -->
+      <div class="sidebar-heading">Cadastros</div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseUsuarios"
+          aria-expanded="true"
+          aria-controls="collapseUsuarios"
+        >
+          <i class="fas fa-users"></i>
+          <span>Usuários</span>
+        </a>
+        <div
+          id="collapseUsuarios"
+          class="collapse"
+          aria-labelledby="headingTwo"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" th:href="@{/usuarios/incluir}"
+              >Novo Usuário</a
+            >
+            <a class="collapse-item" href="#">Visualizar Usuários</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseEstudantes"
+          aria-expanded="true"
+          aria-controls="collapseEstudantes"
+        >
+          <i class="fas fa-user-graduate"></i>
+          <span>Estudantes</span>
+        </a>
+        <div
+          id="collapseEstudantes"
+          class="collapse"
+          aria-labelledby="headingUtilities"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" th:href="@{/students/incluir}"
+              >Novo Estudante</a
+            >
+            <a class="collapse-item" th:href="@{/students}"
+              >Visualizar Estudantes</a
+            >
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseCondominos"
+          aria-expanded="true"
+          aria-controls="collapseCondominos"
+        >
+          <i class="fas fa-users"></i>
+          <span>Condôminos</span>
+        </a>
+        <div
+          id="collapseCondominos"
+          class="collapse"
+          aria-labelledby="headingUtilities"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <a class="collapse-item" th:href="@{/condominos/incluir}">Novo Condômino</a> -->
+            <a class="collapse-item" th:href="@{/condominos}"
+              >Visualizar Condôminos</a
+            >
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapsePagamentos"
+          aria-expanded="true"
+          aria-controls="collapsePagamentos"
+        >
+          <i class="fas fa-coins"></i>
+          <span>Pagamentos</span>
+        </a>
+        <div
+          id="collapsePagamentos"
+          class="collapse"
+          aria-labelledby="headingUtilities"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" th:href="@{/pagamentos}">Novo Pagamento</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapseLancamentos"
+          aria-expanded="true"
+          aria-controls="collapseLancamentos"
+        >
+          <i class="fas fa-coins"></i>
+          <span>Lançamentos</span>
+        </a>
+        <div
+          id="collapseLancamentos"
+          class="collapse"
+          aria-labelledby="headingUtilities"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" th:href="@{/lancamentos}"
+              >Novo Lançamento</a
+            >
+          </div>
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Heading -->
+      <div class="sidebar-heading">Addons</div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a
+          class="nav-link collapsed"
+          href="#"
+          data-toggle="collapse"
+          data-target="#collapsePages"
+          aria-expanded="true"
+          aria-controls="collapsePages"
+        >
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Pages</span>
+        </a>
+        <div
+          id="collapsePages"
+          class="collapse"
+          aria-labelledby="headingPages"
+          data-parent="#accordionSidebar"
+        >
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Login Screens:</h6>
+            <a class="collapse-item" href="login.html">Login</a>
+            <a class="collapse-item" href="register.html">Register</a>
+            <a class="collapse-item" href="forgot-password.html"
+              >Forgot Password</a
+            >
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">Other Pages:</h6>
+            <a class="collapse-item" href="404.html">404 Page</a>
+            <a class="collapse-item" href="blank.html">Blank Page</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a
+        >
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tables</span></a
+        >
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block" />
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        <nav
+          class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+        >
+          <!-- Sidebar Toggle (Topbar) -->
+          <button
+            id="sidebarToggleTop"
+            class="btn btn-link d-md-none rounded-circle mr-3"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <!-- <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a> -->
+            <!-- Dropdown - Messages -->
+            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                        placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li> -->
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span
+                  th:text="${#authentication.principal.usuario.fullname}"
+                  class="mr-2 d-none d-lg-inline text-gray-600 small"
+                ></span>
+                <img th:src="@{/img/logado.ico}" height="30" width="30" />
+              </a>
+              <!-- Dropdown - User Information -->
+              <div
+                class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown"
+              >
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#logoutModal"
+                >
+                  <i
+                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                  ></i>
+                  Sair
+                </a>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Logout Modal-->
+          <div
+            class="modal fade"
+            id="logoutModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Pronto para sair?
+                  </h5>
+                  <button
+                    class="close"
+                    type="button"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Selecione "Confirmar" abaixo se você quer finalizar sua sessão
+                  atual.
+                </div>
+                <div class="modal-footer">
+                  <button
+                    class="btn btn-secondary"
+                    type="button"
+                    data-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <a class="btn btn-primary" th:href="@{/logout}">Confirmar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <main layout:fragment="content">
+            <!-- Aqui será renderizdo o conteúdo principal -->
+          </main>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span class="mb-1">
+              Copyright &copy;
+              <span
+                th:text="${@environment.getProperty('spring.application.name')}"
+              ></span
+              >. Todos os direitos reservados.
+            </span>
+
+            <span
+              ><a href="#">Contato</a> |
+              <a href="#" target="_blank">Facebook</a> |
+              <a href="#" target="_blank">Twitter</a></span
+            >
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+</html>

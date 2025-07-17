@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{index}">
+
+<main layout:fragment="content">
+
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+            <h5 class="tituloIndex">Estudantes
+                <div style="float: right;">
+                    <a th:href="@{/students/incluir}" class="btn btn-primary"><i class="fas fa-plus"></i>
+                        Novo</a>
+                </div>
+            </h5>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="studentTable" class="table table-bordered" style="width:100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('#studentTable').DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "responsive": true,
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json"
+                    },
+                    "ajax": {
+                        "url": "/dataTable/students",
+                        "type": "GET"
+                    },
+                    "columns": [
+                        { "data": "id" },
+                        { "data": "name" },
+                        { "data": "email" },
+                        { "data": "address" },
+                        {
+                            "data": null, // Define como null pois será preenchido manualmente
+                            "orderable": false, // Impede ordenação para esta coluna
+                            "render": function (data, type, row) {
+                                // Retorna o HTML para os botões de ação, com href dinâmico
+                                return `
+                            <a href="/students/consultar/${row.id}" title="Consultar" class="btn btn-warning">
+                                <i class="far fa-eye"></i>
+                            </a>
+                            <a href="/students/alterar/${row.id}" title="Alterar" class="btn btn-warning">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <a href="/students/excluir/${row.id}" title="Excluir" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>`;
+                            }
+                        }
+                    ]
+                });
+            });
+        </script>
+
+    </div>
+</main>
+
+</html>

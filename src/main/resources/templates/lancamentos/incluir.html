@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{index}">
+<main layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{/lancamentos}">Lançamentos</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Novo lançamento
+            </li>
+        </ol>
+    </nav>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <h2>Novo Lançamento</h2>
+            <p class="mb-3 text-muted">
+                Preencha o formulário para um novo lançamento.
+            </p>
+
+            <form action="#" th:action="@{/lancamentos/gravar}" th:object="${objeto}" method="post">
+                <div class="row">
+                    <div class="form-group">
+                        <input type="hidden" th:field="*{id}" class="form-control" id="id" />
+                    </div>
+
+                    <div class="mb-3 col-md-4 form-group">
+                        <label for="dataLancamento">Data do Pagamento: </label>
+                        <input type="text" th:field="*{dataLancamento}" id="dataLancamento" class="form-control"
+                            data-mask="00/00/0000" />
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input type="text" th:field="*{descricao}" class="form-control" id="descricao"
+                            placeholder="Digite uma Descrição" />
+                    </div>
+
+
+                    <div class="col-md-4 form-group">
+                        <label for="tipoMovimentacao">Tipo Movimentação</label>
+                        <select class="form-control select2" id="tipoMovimentacao" th:field="*{tipoMovimentacao}"
+                            th:if="${!somenteLeitura}">
+                            <option value=""></option>
+                            <option th:each="tipoMovimentacao : ${listaTipoMovimentacao}"
+                                th:value="${tipoMovimentacao.id}" th:text="${tipoMovimentacao.descricao}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Gravar</button>
+                        <a class="btn btn-secondary ml-3" type="button" th:href="@{/lancamentos}">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+</html>
