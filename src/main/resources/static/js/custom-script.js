@@ -8,6 +8,21 @@ $(document).ready(function () {
         $(this).mask($(this).attr('data-mask'));
     });
 
+     // Mascara automatica para campos de dinheiro
+    $('.money').mask("#.##0,00", {reverse: true});
+
+    // Conversão do campo money antes do envio para o Java
+    $('form').on('submit', function () {
+        $('.money').each(function () {
+            let valorOriginal = $(this).val();
+
+            // Remove pontos (milhares) e substitui vírgula decimal por ponto
+            let valorConvertido = valorOriginal.replace(/\./g, '').replace(',', '.');
+
+            $(this).val(valorConvertido); // seta o novo valor no input
+        });
+    });
+
     $('[data-readonly]').each(function () {
         $(this).css({
             'background-color': '#e9ecef', /* Cor padrão do disabled */
@@ -34,5 +49,8 @@ $(document).ready(function () {
         placeholder: "Selecione uma opção",
         theme: 'bootstrap4'
     });
+
+    
+
 
 });
