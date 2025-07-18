@@ -61,7 +61,9 @@
             <a class="collapse-item" th:href="@{/usuarios/incluir}"
               >Novo Usuário</a
             >
-            <a class="collapse-item" href="#">Visualizar Usuários</a>
+            <a class="collapse-item" th:href="@{/usuarios}"
+              >Visualizar Usuários</a
+            >
           </div>
         </div>
       </li>
@@ -167,8 +169,11 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" th:href="@{/lancamentos}"
+            <a class="collapse-item" th:href="@{/lancamentos/incluir}"
               >Novo Lançamento</a
+            >
+            <a class="collapse-item" th:href="@{/lancamentos}"
+              >Visualizar Lançamentos</a
             >
           </div>
         </div>

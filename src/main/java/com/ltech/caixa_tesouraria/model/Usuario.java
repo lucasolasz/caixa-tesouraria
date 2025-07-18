@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -57,6 +59,7 @@ public class Usuario {
 
     private LocalDate dataAdmissao;
 
+    @JsonProperty("fullName")
     public String getFullname() {
         return this.getFirstName() + " " + this.getLastName();
     }

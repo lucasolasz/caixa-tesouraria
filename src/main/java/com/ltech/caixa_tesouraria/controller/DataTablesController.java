@@ -12,41 +12,66 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ltech.caixa_tesouraria.model.Lancamentos;
+import com.ltech.caixa_tesouraria.model.Usuario;
 import com.ltech.caixa_tesouraria.repository.LancamentoRepository;
+import com.ltech.caixa_tesouraria.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/dataTable")
 public class DataTablesController {
 
     private final LancamentoRepository lancamentoRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    // private final CondominoRepository condominoRepository;
-
-    public DataTablesController(LancamentoRepository lancamentoRepository) {
+    public DataTablesController(LancamentoRepository lancamentoRepository, UsuarioRepository usuarioRepository) {
         this.lancamentoRepository = lancamentoRepository;
-        // this.condominoRepository = condominoRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping("/lancamentos")
-    public Map<String, Object> getStudents(@RequestParam int draw, @RequestParam int start, @RequestParam int length,
+    public Map<String, Object> getLancamentos(@RequestParam int draw, @RequestParam int start, @RequestParam int length,
             @RequestParam(value = "search[value]", required = false) String searchValue) {
 
         int page = start / length;
         Pageable pageable = PageRequest.of(page, length);
 
-        Page<Lancamentos> studentPage;
+        Page<Lancamentos> objectPage;
         if (searchValue != null && !searchValue.isEmpty()) {
-            studentPage = lancamentoRepository.searchAllColumns(searchValue,
+            objectPage = lancamentoRepository.searchAllColumns(searchValue,
                     pageable);
         } else {
-            studentPage = lancamentoRepository.findAll(pageable);
+            objectPage = lancamentoRepository.findAll(pageable);
         }
 
         Map<String, Object> response = new HashMap<>();
         response.put("draw", draw);
         response.put("recordsTotal", lancamentoRepository.count());
-        response.put("recordsFiltered", studentPage.getTotalElements());
-        response.put("data", studentPage.getContent());
+        response.put("recordsFiltered", objectPage.getTotalElements());
+        response.put("data", objectPage.getContent());
+
+        return response;
+    }
+
+    @GetMapping("/usuarios")
+    public Map<String, Object> getUsuarios(@RequestParam int draw, @RequestParam int start, @RequestParam int length,
+            @RequestParam(value = "search[value]", required = false) String searchValue) {
+
+        int page = start / length;
+        Pageable pageable = PageRequest.of(page, length);
+
+        Page<Usuario> objectPage;
+        if (searchValue != null && !searchValue.isEmpty()) {
+            objectPage = usuarioRepository.searchAllColumns(searchValue,
+                    pageable);
+        } else {
+            objectPage = usuarioRepository.findAll(pageable);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("draw", draw);
+        response.put("recordsTotal", lancamentoRepository.count());
+        response.put("recordsFiltered", objectPage.getTotalElements());
+        response.put("data", objectPage.getContent());
 
         return response;
     }
