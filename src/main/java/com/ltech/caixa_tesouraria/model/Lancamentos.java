@@ -3,6 +3,10 @@ package com.ltech.caixa_tesouraria.model;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ltech.caixa_tesouraria.util.DataUtil;
+import com.ltech.caixa_tesouraria.util.TextoUtil;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,5 +43,15 @@ public class Lancamentos {
 
     @Column(precision = 19, scale = 2)
     private BigDecimal valor;
+
+    @JsonProperty("dataFormatada")
+    public String getDataFormatada() {
+        return DataUtil.formatarLocalDateParaString(this.dataLancamento);
+    }
+
+    @JsonProperty("valorMonetarioFormatado")
+    public String getValorMonetarioFormatado() {
+        return TextoUtil.formatarComoMoedaBrasileira(this.valor);
+    }
 
 }
