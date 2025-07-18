@@ -38,118 +38,6 @@
       <!-- Heading -->
       <div class="sidebar-heading">Cadastros</div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseUsuarios"
-          aria-expanded="true"
-          aria-controls="collapseUsuarios"
-        >
-          <i class="fas fa-users"></i>
-          <span>Usuários</span>
-        </a>
-        <div
-          id="collapseUsuarios"
-          class="collapse"
-          aria-labelledby="headingTwo"
-          data-parent="#accordionSidebar"
-        >
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" th:href="@{/usuarios/incluir}"
-              >Novo Usuário</a
-            >
-            <a class="collapse-item" th:href="@{/usuarios}"
-              >Visualizar Usuários</a
-            >
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseEstudantes"
-          aria-expanded="true"
-          aria-controls="collapseEstudantes"
-        >
-          <i class="fas fa-user-graduate"></i>
-          <span>Estudantes</span>
-        </a>
-        <div
-          id="collapseEstudantes"
-          class="collapse"
-          aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar"
-        >
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" th:href="@{/students/incluir}"
-              >Novo Estudante</a
-            >
-            <a class="collapse-item" th:href="@{/students}"
-              >Visualizar Estudantes</a
-            >
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseCondominos"
-          aria-expanded="true"
-          aria-controls="collapseCondominos"
-        >
-          <i class="fas fa-users"></i>
-          <span>Condôminos</span>
-        </a>
-        <div
-          id="collapseCondominos"
-          class="collapse"
-          aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar"
-        >
-          <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <a class="collapse-item" th:href="@{/condominos/incluir}">Novo Condômino</a> -->
-            <a class="collapse-item" th:href="@{/condominos}"
-              >Visualizar Condôminos</a
-            >
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapsePagamentos"
-          aria-expanded="true"
-          aria-controls="collapsePagamentos"
-        >
-          <i class="fas fa-coins"></i>
-          <span>Pagamentos</span>
-        </a>
-        <div
-          id="collapsePagamentos"
-          class="collapse"
-          aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar"
-        >
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" th:href="@{/pagamentos}">Novo Pagamento</a>
-          </div>
-        </div>
-      </li>
-
       <li class="nav-item">
         <a
           class="nav-link collapsed"
@@ -183,56 +71,35 @@
       <hr class="sidebar-divider" />
 
       <!-- Heading -->
-      <div class="sidebar-heading">Addons</div>
+      <div class="sidebar-heading">Administrativo</div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a
           class="nav-link collapsed"
           href="#"
           data-toggle="collapse"
-          data-target="#collapsePages"
+          data-target="#collapseUsuarios"
           aria-expanded="true"
-          aria-controls="collapsePages"
+          aria-controls="collapseUsuarios"
         >
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <i class="fas fa-users"></i>
+          <span>Usuários</span>
         </a>
         <div
-          id="collapsePages"
+          id="collapseUsuarios"
           class="collapse"
-          aria-labelledby="headingPages"
+          aria-labelledby="headingTwo"
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html"
-              >Forgot Password</a
+            <a class="collapse-item" th:href="@{/usuarios/incluir}"
+              >Novo Usuário</a
             >
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" th:href="@{/usuarios}"
+              >Visualizar Usuários</a
+            >
           </div>
         </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a
-        >
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a
-        >
       </li>
 
       <!-- Divider -->
