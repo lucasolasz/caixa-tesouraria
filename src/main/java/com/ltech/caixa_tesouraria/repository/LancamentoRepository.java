@@ -1,5 +1,7 @@
 package com.ltech.caixa_tesouraria.repository;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +22,10 @@ public interface LancamentoRepository extends JpaRepository<Lancamentos, Long> {
                    OR LOWER(l.funcionarioLancamento.username) LIKE LOWER(CONCAT('%', :search, '%'))
             """)
     Page<Lancamentos> searchAllColumns(@Param("search") String search, Pageable pageable);
+
+    @Query("""
+                SELECT SUM(valor) FROM Lancamentos l
+                WHERE MONTH(l.dataLancamento) = :numeroDoMes
+            """)
+    BigDecimal sumByDataLancamentoBetween(@Param("numeroDoMes") int numeroDoMes);
 }
