@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ltech.caixa_tesouraria.repository.ServiceCrud;
 import com.ltech.caixa_tesouraria.util.OperacaoCrud;
@@ -159,7 +160,8 @@ public abstract class CrudController<T, ID, S extends ServiceCrud<T, ID, ?>> {
     }
 
     @PostMapping("/gravar")
-    public String gravar(@Valid @ModelAttribute("objeto") T entity, BindingResult result, Model model) {
+    public String gravar(@Valid @ModelAttribute("objeto") T entity, BindingResult result, Model model,
+            RedirectAttributes redirectAttributes) {
         this.carregarAtributosTela(model);
         this.cargaAuxiliarObjetos(model);
         service.ajusteAntesGravacao(entity);
@@ -167,6 +169,11 @@ public abstract class CrudController<T, ID, S extends ServiceCrud<T, ID, ?>> {
             return this.getViewPathOperacaoInclusao();
         }
         service.gravar(entity);
+        if (operacaoAtual == OperacaoCrud.OPE_INCLUSAO) {
+            redirectAttributes.addFlashAttribute("msg", "Registro incluído com sucesso!");
+        } else if (operacaoAtual == OperacaoCrud.OPE_EDICAO) {
+            redirectAttributes.addFlashAttribute("msg", "Registro atualizado com sucesso!");
+        }
         return this.getRedirectPathOrigem();
     }
 
