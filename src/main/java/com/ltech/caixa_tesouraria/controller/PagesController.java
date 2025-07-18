@@ -17,7 +17,8 @@ public class PagesController {
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("totalMes", lancamentoService.getValorTotalGanhosMes());
+        model.addAttribute("totalMes", lancamentoService.getValorTotalGanhosMesCorrente());
+        model.addAttribute("totalAno", lancamentoService.getValorTotalGanhosAno());
         return "pages/home";
     }
 

@@ -26,6 +26,14 @@ public interface LancamentoRepository extends JpaRepository<Lancamentos, Long> {
     @Query("""
                 SELECT SUM(valor) FROM Lancamentos l
                 WHERE MONTH(l.dataLancamento) = :numeroDoMes
+                AND YEAR(l.dataLancamento) = :numeroAno
             """)
-    BigDecimal sumByDataLancamentoBetween(@Param("numeroDoMes") int numeroDoMes);
+    BigDecimal getValorTotalGanhosMesCorrente(@Param("numeroDoMes") int numeroDoMes,
+            @Param("numeroAno") int numeroAno);
+
+    @Query("""
+                SELECT SUM(valor) FROM Lancamentos l
+                WHERE YEAR(l.dataLancamento) = :numeroAno
+            """)
+    BigDecimal getValorTotalGanhosAno(@Param("numeroAno") int numeroAno);
 }

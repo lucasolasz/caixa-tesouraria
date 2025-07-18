@@ -26,9 +26,15 @@ public class LancamentoService extends ServiceCrud<Lancamentos, Long, Lancamento
         super.ajusteAntesGravacao(entity);
     }
 
-    public BigDecimal getValorTotalGanhosMes() {
+    public BigDecimal getValorTotalGanhosMesCorrente() {
         var numeroDoMes = LocalDate.now().getMonthValue();
-        return repository.sumByDataLancamentoBetween(numeroDoMes);
+        var numeroAno = LocalDate.now().getYear();
+        return repository.getValorTotalGanhosMesCorrente(numeroDoMes, numeroAno);
+    }
+
+    public BigDecimal getValorTotalGanhosAno() {
+        var numeroAno = LocalDate.now().getYear();
+        return repository.getValorTotalGanhosAno(numeroAno);
     }
 
 }
