@@ -46,10 +46,16 @@
                 type="text"
                 th:field="*{dataLancamento}"
                 id="dataLancamento"
+                th:classappend="${#fields.hasErrors('dataLancamento')} ? 'is-invalid' : ''"
                 class="form-control datePicker"
                 data-mask="00/00/0000"
                 th:if="${!somenteLeitura}"
               />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('dataLancamento')}"
+                th:errors="*{dataLancamento}"
+              ></div>
               <input
                 type="text"
                 th:field="*{dataLancamento}"
@@ -66,10 +72,16 @@
                 type="text"
                 th:field="*{valor}"
                 class="form-control money bloqueado"
+                th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid' : ''"
                 id="valor"
                 placeholder="0,00"
                 th:if="${!somenteLeitura}"
               />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('valor')}"
+                th:errors="*{valor}"
+              ></div>
               <input
                 type="text"
                 th:field="*{valor}"
@@ -86,10 +98,16 @@
                 type="text"
                 th:field="*{descricao}"
                 class="form-control"
+                th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid' : ''"
                 id="descricao"
                 placeholder="Digite uma Descrição"
                 th:if="${!somenteLeitura}"
               />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('descricao')}"
+                th:errors="*{descricao}"
+              ></div>
               <input
                 type="text"
                 th:field="*{descricao}"
@@ -104,6 +122,7 @@
               <label for="tipoMovimentacao">Tipo Movimentação</label>
               <select
                 class="form-control select2"
+                th:classappend="${#fields.hasErrors('tipoMovimentacao')} ? 'is-invalid' : ''"
                 id="tipoMovimentacao"
                 th:field="*{tipoMovimentacao}"
                 th:if="${!somenteLeitura}"
@@ -115,6 +134,11 @@
                   th:text="${tipoMovimentacao.descricao}"
                 ></option>
               </select>
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('tipoMovimentacao')}"
+                th:errors="*{tipoMovimentacao}"
+              ></div>
               <input
                 type="text"
                 th:field="*{tipoMovimentacao.descricao}"
@@ -129,6 +153,7 @@
               <label for="fundoFinanceiro">Fundo Financeiro</label>
               <select
                 class="form-control select2"
+                th:classappend="${#fields.hasErrors('fundoFinanceiro')} ? 'is-invalid' : ''"
                 id="fundoFinanceiro"
                 th:field="*{fundoFinanceiro}"
                 th:if="${!somenteLeitura}"
@@ -140,6 +165,11 @@
                   th:text="${fundoFinanceiro.descricao}"
                 ></option>
               </select>
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('fundoFinanceiro')}"
+                th:errors="*{fundoFinanceiro}"
+              ></div>
               <input
                 type="text"
                 th:field="*{fundoFinanceiro.descricao}"
