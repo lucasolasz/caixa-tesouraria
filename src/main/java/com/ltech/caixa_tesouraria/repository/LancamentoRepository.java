@@ -12,28 +12,35 @@ import com.ltech.caixa_tesouraria.model.Lancamentos;
 
 public interface LancamentoRepository extends JpaRepository<Lancamentos, Long> {
 
-    @Query("""
-                SELECT l FROM Lancamentos l
-                WHERE LOWER(l.descricao) LIKE LOWER(CONCAT('%', :search, '%'))
-                   OR CAST(l.dataLancamento AS string) LIKE CONCAT('%', :search, '%')
-                   OR CAST(l.valor AS string) LIKE CONCAT('%', :search, '%')
-                   OR LOWER(l.tipoMovimentacao.descricao) LIKE LOWER(CONCAT('%', :search, '%'))
-                   OR LOWER(l.fundoFinanceiro.descricao) LIKE LOWER(CONCAT('%', :search, '%'))
-                   OR LOWER(l.funcionarioLancamento.username) LIKE LOWER(CONCAT('%', :search, '%'))
-            """)
-    Page<Lancamentos> searchAllColumns(@Param("search") String search, Pageable pageable);
+        @Query("""
+                            SELECT l FROM Lancamentos l
+                            WHERE LOWER(l.descricao) LIKE LOWER(CONCAT('%', :search, '%'))
+                               OR CAST(l.dataLancamento AS string) LIKE CONCAT('%', :search, '%')
+                               OR CAST(l.valor AS string) LIKE CONCAT('%', :search, '%')
+                               OR LOWER(l.tipoMovimentacao.descricao) LIKE LOWER(CONCAT('%', :search, '%'))
+                               OR LOWER(l.fundoFinanceiro.descricao) LIKE LOWER(CONCAT('%', :search, '%'))
+                               OR LOWER(l.funcionarioLancamento.username) LIKE LOWER(CONCAT('%', :search, '%'))
+                        """)
+        Page<Lancamentos> searchAllColumns(@Param("search") String search, Pageable pageable);
 
-    @Query("""
-                SELECT SUM(valor) FROM Lancamentos l
-                WHERE MONTH(l.dataLancamento) = :numeroDoMes
-                AND YEAR(l.dataLancamento) = :numeroAno
-            """)
-    BigDecimal getValorTotalGanhosMesCorrente(@Param("numeroDoMes") int numeroDoMes,
-            @Param("numeroAno") int numeroAno);
+        @Query("""
+                            SELECT SUM(
+                                CASE
+                                    WHEN l.tipoMovimentacao.id = 1 THEN l.valor
+                                    WHEN l.tipoMovimentacao.id = 2 THEN -l.valor
+                                    ELSE 0
+                                END
+                            )
+                            FROM Lancamentos l
+                            WHERE MONTH(l.dataLancamento) = :numeroDoMes
+                              AND YEAR(l.dataLancamento) = :numeroAno
+                        """)
+        BigDecimal getValorTotalGanhosMesCorrente(@Param("numeroDoMes") int numeroDoMes,
+                        @Param("numeroAno") int numeroAno);
 
-    @Query("""
-                SELECT SUM(valor) FROM Lancamentos l
-                WHERE YEAR(l.dataLancamento) = :numeroAno
-            """)
-    BigDecimal getValorTotalGanhosAno(@Param("numeroAno") int numeroAno);
+        @Query("""
+                            SELECT SUM(valor) FROM Lancamentos l
+                            WHERE YEAR(l.dataLancamento) = :numeroAno
+                        """)
+        BigDecimal getValorTotalGanhosAno(@Param("numeroAno") int numeroAno);
 }
