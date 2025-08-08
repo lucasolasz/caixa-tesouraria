@@ -36,7 +36,6 @@ public abstract class ServiceCrud<T, ID, R extends JpaRepository<T, ID>> {
     }
 
     public void ajusteAntesGravacao(T entity) {
-        this.gravar(entity);
     }
 
     public R getRepository() {

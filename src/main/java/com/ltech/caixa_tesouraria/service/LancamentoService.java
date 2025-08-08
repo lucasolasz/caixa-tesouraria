@@ -23,7 +23,6 @@ public class LancamentoService extends ServiceCrud<Lancamentos, Long, Lancamento
     @Override
     public void ajusteAntesGravacao(Lancamentos entity) {
         entity.setFuncionarioLancamento(usuarioAutenticadoProvider.getUsuarioLogado());
-        super.ajusteAntesGravacao(entity);
     }
 
     public BigDecimal getValorTotalGanhosMesCorrente() {

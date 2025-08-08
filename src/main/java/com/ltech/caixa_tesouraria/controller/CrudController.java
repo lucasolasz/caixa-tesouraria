@@ -164,10 +164,10 @@ public abstract class CrudController<T, ID, S extends ServiceCrud<T, ID, ?>> {
             RedirectAttributes redirectAttributes) {
         this.carregarAtributosTela(model);
         this.cargaAuxiliarObjetos(model);
-        service.ajusteAntesGravacao(entity);
         if (!validarAntesDeGravar(entity, result, model)) {
             return this.getViewPathOperacaoInclusao();
         }
+        service.ajusteAntesGravacao(entity);
         service.gravar(entity);
         if (operacaoAtual == OperacaoCrud.OPE_INCLUSAO) {
             redirectAttributes.addFlashAttribute("msg", "Registro incluído com sucesso!");
