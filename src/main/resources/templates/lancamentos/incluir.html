@@ -98,21 +98,46 @@
                 type="text"
                 th:field="*{descricao}"
                 class="form-control"
-                th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid' : ''"
                 id="descricao"
                 placeholder="Digite uma Descrição"
                 th:if="${!somenteLeitura}"
               />
-              <div
-                class="invalid-feedback"
-                th:if="${#fields.hasErrors('descricao')}"
-                th:errors="*{descricao}"
-              ></div>
               <input
                 type="text"
                 th:field="*{descricao}"
                 class="form-control"
                 id="descricao"
+                th:if="${somenteLeitura}"
+                disabled
+              />
+            </div>
+
+            <div class="col-md-4 form-group">
+              <label for="categoriaLancamento">Categoria Lançamento</label>
+              <select
+                class="form-control select2"
+                th:classappend="${#fields.hasErrors('categoriaLancamento')} ? 'is-invalid' : ''"
+                id="categoriaLancamento"
+                th:field="*{categoriaLancamento}"
+                th:if="${!somenteLeitura}"
+              >
+                <option value=""></option>
+                <option
+                  th:each="categoriaLancamento : ${listaCategoriaLancamento}"
+                  th:value="${categoriaLancamento.id}"
+                  th:text="${categoriaLancamento.descricao}"
+                ></option>
+              </select>
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('categoriaLancamento')}"
+                th:errors="*{categoriaLancamento}"
+              ></div>
+              <input
+                type="text"
+                th:field="*{categoriaLancamento.descricao}"
+                class="form-control"
+                id="categoriaLancamento"
                 th:if="${somenteLeitura}"
                 disabled
               />
