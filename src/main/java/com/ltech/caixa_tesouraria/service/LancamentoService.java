@@ -2,6 +2,7 @@ package com.ltech.caixa_tesouraria.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,13 @@ public class LancamentoService extends ServiceCrud<Lancamentos, Long, Lancamento
     public BigDecimal getValorTotalGanhosMesCorrente() {
         var numeroDoMes = LocalDate.now().getMonthValue();
         var numeroAno = LocalDate.now().getYear();
-        return repository.getValorTotalGanhosMesCorrente(numeroDoMes, numeroAno);
+        return Optional.ofNullable(repository.getValorTotalGanhosMesCorrente(numeroDoMes, numeroAno))
+                .orElse(BigDecimal.ZERO);
     }
 
     public BigDecimal getValorTotalGanhosAno() {
         var numeroAno = LocalDate.now().getYear();
-        return repository.getValorTotalGanhosAno(numeroAno);
+        return Optional.ofNullable(repository.getValorTotalGanhosAno(numeroAno)).orElse(BigDecimal.ZERO);
     }
 
 }
