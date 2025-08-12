@@ -44,8 +44,21 @@ public class DataInitializerInicial implements CommandLineRunner {
         jdbcTemplate.execute(carregarRolesUsuario());
         jdbcTemplate.execute(carregarTipoMovimentacao());
         jdbcTemplate.execute(carregarFundoFinanceiro());
+        jdbcTemplate.execute(carregarCategoriaLancamento());
 
         System.out.println("Scripts executados");
+
+    }
+
+    public String carregarCategoriaLancamento() {
+
+        try {
+            Path path = Paths.get(new ClassPathResource("scripts/categoria_lancamento.sql").getURI());
+            String sql = Files.readString(path);
+            return sql;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
 
     }
 
