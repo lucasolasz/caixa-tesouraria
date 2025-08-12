@@ -12,11 +12,4 @@ public class FundoFinanceiroService extends ServiceCrud<FundoFinanceiro, Long, F
     public FundoFinanceiroService(FundoFinanceiroRepository repository) {
         super(repository);
     }
-
-    @Override
-    public void ajusteAntesGravacao(FundoFinanceiro entity) {
-        // Implement any specific logic before saving a FundoFinanceiro entity
-        super.ajusteAntesGravacao(entity);
-    }
-
 }
