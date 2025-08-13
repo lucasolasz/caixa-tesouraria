@@ -1,5 +1,8 @@
 package com.ltech.caixa_tesouraria.controller;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,13 +36,16 @@ public class RelatorioController extends CrudController<Lancamentos, Long, Lanca
     public void cargaAuxiliarObjetos(Model model) {
         this.carregarAtributosTela(model);
         model.addAttribute("filtro", new FiltroRelatorioDto());
-
+        model.addAttribute("somatorioFiltroPesquisa", BigDecimal.ZERO);
     }
 
     @PostMapping("/pesquisar")
     public String pesquisarComFiltro(@ModelAttribute FiltroRelatorioDto filtro, Model model) {
         model.addAttribute("filtro", filtro);
-        model.addAttribute("listaLancamentoResultadoPesquisa", this.getService().pesquisarComFiltro(filtro));
+        List<Lancamentos> resultadoPequisa = this.getService().pesquisarComFiltro(filtro);
+        model.addAttribute("listaLancamentoResultadoPesquisa", resultadoPequisa);
+        model.addAttribute("somatorioFiltroPesquisa", this.getService()
+                .getSomatorioTotalFiltro(resultadoPequisa));
         this.carregarAtributosTela(model);
         return this.getViewPathOperacaoVisualizar();
     }

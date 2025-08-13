@@ -50,4 +50,9 @@ public class LancamentoService extends ServiceCrud<Lancamentos, Long, Lancamento
                 filtro.getDataLancamento());
     }
 
+    public BigDecimal getSomatorioTotalFiltro(List<Lancamentos> listaLancamentoResultadoPesquisa) {
+        return Optional.ofNullable(listaLancamentoResultadoPesquisa.stream()
+                .map(Lancamentos::getValor)
+                .reduce(BigDecimal.ZERO, BigDecimal::add)).orElse(BigDecimal.ZERO);
+    }
 }
