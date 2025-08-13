@@ -2,10 +2,12 @@ package com.ltech.caixa_tesouraria.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.ltech.caixa_tesouraria.dto.FiltroRelatorioDto;
 import com.ltech.caixa_tesouraria.model.Lancamentos;
 import com.ltech.caixa_tesouraria.repository.LancamentoRepository;
 import com.ltech.caixa_tesouraria.repository.ServiceCrud;
@@ -36,6 +38,16 @@ public class LancamentoService extends ServiceCrud<Lancamentos, Long, Lancamento
     public BigDecimal getValorTotalGanhosAno() {
         var numeroAno = LocalDate.now().getYear();
         return Optional.ofNullable(repository.getValorTotalGanhosAno(numeroAno)).orElse(BigDecimal.ZERO);
+    }
+
+    public List<Lancamentos> pesquisarComFiltro(FiltroRelatorioDto filtro) {
+        return this.getRepository().getPesquisarComFiltro(
+                filtro.getTipoMovimentacao(),
+                filtro.getCategoriaLancamento(),
+                filtro.getFundoFinanceiro(),
+                filtro.getDataInicio(),
+                filtro.getDataFim(),
+                filtro.getDataLancamento());
     }
 
 }

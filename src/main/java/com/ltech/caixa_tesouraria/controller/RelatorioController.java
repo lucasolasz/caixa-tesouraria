@@ -39,6 +39,7 @@ public class RelatorioController extends CrudController<Lancamentos, Long, Lanca
     @PostMapping("/pesquisar")
     public String pesquisarComFiltro(@ModelAttribute FiltroRelatorioDto filtro, Model model) {
         model.addAttribute("filtro", filtro);
+        model.addAttribute("listaLancamentoResultadoPesquisa", this.getService().pesquisarComFiltro(filtro));
         this.carregarAtributosTela(model);
         return this.getViewPathOperacaoVisualizar();
     }
@@ -47,7 +48,7 @@ public class RelatorioController extends CrudController<Lancamentos, Long, Lanca
         model.addAttribute("listaTipoMovimentacao", tipoMovimentacaoService.recuperarTodos());
         model.addAttribute("listaFundoFinanceiro", fundoFinanceiroService.recuperarTodos());
         model.addAttribute("listaCategoriaLancamento", categoriaLancamentoService.recuperarTodos());
-        model.addAttribute("listaLancamentoResultadoPesquisa", this.getService().recuperarTodos());
+
     }
 
 }
