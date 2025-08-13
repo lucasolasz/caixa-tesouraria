@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html
+  lang="pt"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{index}"
+>
+  <main layout:fragment="content">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="tituloIndex">Filtros Relatório</h5>
+      </div>
+      <div class="card-body">
+        <form
+          th:action="@{/relatorio/pesquisar}"
+          method="post"
+          th:object="${filtro}"
+        >
+          <div class="row d-flex align-items-center form-group ml-1">
+            <div>
+              <p>Por Período</p>
+            </div>
+            <div class="mb-3 col-md-2 form-group">
+              <input
+                type="text"
+                id="dataInicio"
+                name="dataInicio"
+                class="form-control datePicker"
+                data-mask="00/00/0000"
+                th:field="*{dataInicio}"
+              />
+            </div>
+            <div>
+              <p>Até</p>
+            </div>
+            <div class="mb-3 col-md-2 form-group">
+              <input
+                type="text"
+                id="dataFim"
+                name="dataFim"
+                class="form-control datePicker"
+                data-mask="00/00/0000"
+                th:field="*{dataFim}"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-2 col-lg-2 col-12 form-group">
+              <label for="dataLancamento">Data do Lançamento: </label>
+              <input
+                type="text"
+                id="dataLancamento"
+                name="dataLancamento"
+                class="form-control datePicker"
+                data-mask="00/00/0000"
+                th:field="*{dataLancamento}"
+              />
+            </div>
+
+            <div class="col-md-4 form-group">
+              <label for="categoriaLancamento">Categoria Lançamento</label>
+              <select
+                class="form-control select2"
+                id="categoriaLancamento"
+                name="categoriaLancamento"
+                th:field="*{categoriaLancamento}"
+              >
+                <option value=""></option>
+                <option
+                  th:each="categoriaLancamento : ${listaCategoriaLancamento}"
+                  th:value="${categoriaLancamento.id}"
+                  th:text="${categoriaLancamento.descricao}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="col-md-3 form-group">
+              <label for="tipoMovimentacao">Tipo Movimentação</label>
+              <select
+                class="form-control select2"
+                id="tipoMovimentacao"
+                name="tipoMovimentacao"
+                th:field="*{tipoMovimentacao}"
+              >
+                <option value=""></option>
+                <option
+                  th:each="tipoMovimentacao : ${listaTipoMovimentacao}"
+                  th:value="${tipoMovimentacao.id}"
+                  th:text="${tipoMovimentacao.descricao}"
+                ></option>
+              </select>
+            </div>
+
+            <div class="col-md-3 form-group">
+              <label for="fundoFinanceiro">Fundo Financeiro</label>
+              <select
+                class="form-control select2"
+                id="fundoFinanceiro"
+                th:field="*{fundoFinanceiro}"
+              >
+                <option value=""></option>
+                <option
+                  th:each="fundoFinanceiro : ${listaFundoFinanceiro}"
+                  th:value="${fundoFinanceiro.id}"
+                  th:text="${fundoFinanceiro.descricao}"
+                ></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <button
+                type="submit"
+                id="applyFilter"
+                class="btn btn-primary mt-4"
+              >
+                Aplicar Filtros
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h5 class="tituloIndex">Resultado Pesquisa</h5>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive mt-5">
+          <table
+            id="dataTable"
+            class="table table-bordered"
+            style="width: 100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Tipo Movimentação</th>
+                <th scope="col">Fundo</th>
+                <th scope="col">Responsável</th>
+                <th scope="col">Categoria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="lancamento : ${listaLancamentoResultadoPesquisa}">
+                <td th:text="${lancamento.dataLancamento}"></td>
+                <td th:text="${lancamento.valor}"></td>
+                <td th:text="${lancamento.descricao}"></td>
+                <td th:text="${lancamento.tipoMovimentacao.descricao}"></td>
+                <td th:text="${lancamento.fundoFinanceiro.descricao}"></td>
+                <td th:text="${lancamento.funcionarioLancamento.fullName}"></td>
+                <td th:text="${lancamento.categoriaLancamento.descricao}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function () {
+          $("#dataTable").DataTable({
+            language: {
+              url: "https://cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json",
+            },
+          });
+        });
+      </script>
+    </div>
+  </main>
+</html>
