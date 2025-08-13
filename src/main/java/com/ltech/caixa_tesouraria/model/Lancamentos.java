@@ -52,8 +52,8 @@ public class Lancamentos {
     @ManyToOne
     private CategoriaLancamento categoriaLancamento;
 
-    @JsonProperty("dataFormatada")
-    public String getDataFormatada() {
+    @JsonProperty("dataLancamentoFormatada")
+    public String getDataLancamentoFormatada() {
         return DataUtil.formatarLocalDateParaString(this.dataLancamento);
     }
 

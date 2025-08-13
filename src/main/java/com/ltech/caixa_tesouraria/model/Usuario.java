@@ -60,7 +60,7 @@ public class Usuario {
     private LocalDate dataAdmissao;
 
     @JsonProperty("fullName")
-    public String getFullname() {
+    public String getFullName() {
         return this.getFirstName() + " " + this.getLastName();
     }
 

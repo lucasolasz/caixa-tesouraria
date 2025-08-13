@@ -150,8 +150,8 @@
             </thead>
             <tbody>
               <tr th:each="lancamento : ${listaLancamentoResultadoPesquisa}">
-                <td th:text="${lancamento.dataLancamento}"></td>
-                <td th:text="${lancamento.valor}"></td>
+                <td th:text="${lancamento.dataLancamentoFormatada}"></td>
+                <td th:text="${lancamento.valorMonetarioFormatado}"></td>
                 <td th:text="${lancamento.descricao}"></td>
                 <td th:text="${lancamento.tipoMovimentacao.descricao}"></td>
                 <td th:text="${lancamento.fundoFinanceiro.descricao}"></td>
